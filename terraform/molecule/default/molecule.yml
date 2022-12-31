@@ -1,23 +1,11 @@
 ---
 driver:
   name: docker
-platforms: 
-  - name: centos7 
-    groups: 
+platforms:
+  - name: centos7
+    groups:
       - molecule
-    image: timgrt/centos7-ansible:latest 
-    tmpfs:
-      - /run
-      - /tmp
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    privileged: true
-    command: "/usr/sbin/init"
-    pre_build_image: true 
-  - name: rockylinux8 
-    groups: 
-      - molecule
-    image: timgrt/rockylinux8-ansible:latest 
+    image: timgrt/centos7-ansible:latest
     tmpfs:
       - /run
       - /tmp
@@ -26,8 +14,20 @@ platforms:
     privileged: true
     command: "/usr/sbin/init"
     pre_build_image: true
-  - name: fedora37 
-    groups: 
+  - name: rockylinux8
+    groups:
+      - molecule
+    image: timgrt/rockylinux8-ansible:latest
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    command: "/usr/sbin/init"
+    pre_build_image: true
+  - name: fedora37
+    groups:
       - molecule
     image: timgrt/fedora37-ansible
     tmpfs:
@@ -37,9 +37,9 @@ platforms:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
     command: "/usr/sbin/init"
-    pre_build_image: true 
+    pre_build_image: true
   - name: ubuntu2004
-    groups: 
+    groups:
       - molecule
     image: timgrt/ubuntu2004-ansible:latest
     tmpfs:
@@ -51,7 +51,7 @@ platforms:
     command: "/lib/systemd/systemd"
     pre_build_image: true
   - name: amazonlinux2022
-    groups: 
+    groups:
       - molecule
     image: timgrt/amazonlinux2022-ansible:latest
     tmpfs:
