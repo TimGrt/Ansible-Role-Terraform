@@ -65,18 +65,18 @@ platforms:
 provisioner:
   name: ansible
   options:
-    D: true 
+    D: true
   connection_options:
-    ansible_user: ansible 
+    ansible_user: ansible
   config_options:
     defaults:
       interpreter_python: auto_silent
       stdout_callback: yaml
       callbacks_enabled: profile_tasks, timer
-lint: | 
+lint: |
   set -e
   ansible-lint .
-scenario: 
+scenario:
   create_sequence:
     - create
     - prepare
