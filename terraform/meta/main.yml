@@ -15,10 +15,6 @@ galaxy_info:
     - name: Fedora
       versions:
         - 37
-    - name: Debian
-      versions:
-        - buster
-        - bullseye
     - name: Ubuntu
       versions:
         - focal

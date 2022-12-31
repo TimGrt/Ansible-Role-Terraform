@@ -2,15 +2,7 @@
 
 [![Ansible Lint](https://github.com/TimGrt/Ansible-Role-Terraform/actions/workflows/ci.yml/badge.svg)](https://github.com/TimGrt/Ansible-Role-Terraform/actions/workflows/ci.yml)
 
-A simple Ansible role to install latest version of Terraform.
-
-Tested against
-
-* AmazonLinux 2022
-* CentOS 7
-* Fedora 37
-* Rocky Linux 8
-* Ubuntu 20.04
+A simple Ansible role to install the latest version of Terraform.
 
 ## Requirements
 
