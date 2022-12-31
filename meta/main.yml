@@ -6,7 +6,7 @@ galaxy_info:
   author: timgrt
   description: Terraform installation for Linux
   license: "license (BSD, MIT)"
-  min_ansible_version: 2.9
+  min_ansible_version: "2.9"
   platforms:
     - name: EL
       versions:
