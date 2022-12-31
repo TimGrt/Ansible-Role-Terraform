@@ -2,4 +2,4 @@
 - name: Converge
   hosts: molecule
   roles:
-    - terraform
+    - timgrt.terraform
