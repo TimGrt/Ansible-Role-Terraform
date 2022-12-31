@@ -1,0 +1,32 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: terraform
+  author: timgrt
+  description: Terraform installation for Linux
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.9
+  platforms:
+    - name: EL
+      versions:
+        - 7
+        - 8
+    - name: Fedora
+      versions:
+        - 37
+    - name: Debian
+      versions:
+        - buster
+        - bullseye
+    - name: Ubuntu
+      versions:
+        - focal
+    - name: Amazon
+      versions:
+        - 2022
+  galaxy_tags:
+    - cloud
+    - hashicorp
+    - terraform
+    - system

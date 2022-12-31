@@ -1,0 +1,13 @@
+---
+
+- ansible.builtin.import_tasks: install-with-apt.yml # noqa name[missing]
+  when: ansible_facts['pkg_mgr'] == "apt"
+
+- ansible.builtin.import_tasks: install-with-dnf.yml # noqa name[missing]
+  when:
+    - ansible_facts['pkg_mgr'] == "dnf"
+
+- ansible.builtin.import_tasks: install-with-yum.yml # noqa name[missing]
+  when: ansible_facts['pkg_mgr'] == "yum"
+
+- ansible.builtin.import_tasks: enable-tab-completion.yml # noqa name[missing]

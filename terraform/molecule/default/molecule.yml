@@ -1,0 +1,96 @@
+---
+driver:
+  name: docker
+platforms: 
+  - name: centos7 
+    groups: 
+      - molecule
+    image: timgrt/centos7-ansible:latest 
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    command: "/usr/sbin/init"
+    pre_build_image: true 
+  - name: rockylinux8 
+    groups: 
+      - molecule
+    image: timgrt/rockylinux8-ansible:latest 
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    command: "/usr/sbin/init"
+    pre_build_image: true
+  - name: fedora37 
+    groups: 
+      - molecule
+    image: timgrt/fedora37-ansible
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    command: "/usr/sbin/init"
+    pre_build_image: true 
+  - name: ubuntu2004
+    groups: 
+      - molecule
+    image: timgrt/ubuntu2004-ansible:latest
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    command: "/lib/systemd/systemd"
+    pre_build_image: true
+  - name: amazonlinux2022
+    groups: 
+      - molecule
+    image: timgrt/amazonlinux2022-ansible:latest
+    tmpfs:
+      - /run
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    command: "/lib/systemd/systemd"
+    pre_build_image: true
+provisioner:
+  name: ansible
+  options:
+    D: true 
+  connection_options:
+    ansible_user: ansible 
+  config_options:
+    defaults:
+      interpreter_python: auto_silent
+      stdout_callback: yaml
+      callbacks_enabled: profile_tasks, timer
+lint: | 
+  set -e
+  ansible-lint .
+scenario: 
+  create_sequence:
+    - create
+    - prepare
+  converge_sequence:
+    - create
+    - prepare
+    - converge
+    - lint
+  test_sequence:
+    - destroy
+    - create
+    - converge
+    - idempotence
+    - lint
+    - destroy
+  destroy_sequence:
+    - destroy

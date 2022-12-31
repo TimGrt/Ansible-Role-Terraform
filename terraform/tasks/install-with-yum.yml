@@ -1,0 +1,21 @@
+---
+
+- name: Install with YUM | Install dependencies
+  ansible.builtin.yum:
+    name: yum-utils
+    state: present
+  become: true
+
+- name: Install with YUM | Add official HashiCorp repository
+  ansible.builtin.get_url:
+    url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+    dest: /etc/yum.repos.d/hashicorp.repo
+    mode: 0644
+  become: true
+
+- name: Install with YUM | Install Terraform
+  ansible.builtin.yum:
+    name: terraform
+    update_cache: true
+    state: present
+  become: true

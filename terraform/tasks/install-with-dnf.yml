@@ -1,0 +1,42 @@
+---
+
+- name: Install with DNF | Install dependencies
+  ansible.builtin.dnf:
+    name: dnf-plugins-core
+    state: present
+  become: true
+
+# Fedora has specific repo
+- name: Install with DNF | Add official HashiCorp repository for Fedora
+  ansible.builtin.get_url:
+    url: https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+    dest: /etc/yum.repos.d/hashicorp.repo
+    mode: 0644
+  become: true
+  when: ansible_facts['distribution'] == "Fedora"
+
+# AmazonLinux has specific repo
+- name: Install with DNF | Add official HashiCorp repository for AmazonLinux
+  ansible.builtin.get_url:
+    url: https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+    dest: /etc/yum.repos.d/hashicorp.repo
+    mode: 0644
+  become: true
+  when: ansible_facts['distribution'] == "Amazon"
+
+- name: Install with DNF | Add official HashiCorp repository for AmazonLinux
+  ansible.builtin.get_url:
+    url: https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+    dest: /etc/yum.repos.d/hashicorp.repo
+    mode: 0644
+  become: true
+  when:
+    - ansible_facts['os_family'] == "RedHat"
+    - ansible_facts['distribution'] not in ['Fedora', 'Amazon']
+
+- name: Install with DNF | Install Terraform
+  ansible.builtin.dnf:
+    name: terraform
+    update_cache: true
+    state: present
+  become: true

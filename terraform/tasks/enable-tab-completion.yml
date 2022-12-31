@@ -1,0 +1,32 @@
+---
+
+# For Bash or Zsh tab completion can be enabled
+
+- name: Tab-completion | Enable tab completion for /bin/bash or /bin/zsh
+  when: ansible_user_shell in ['/bin/bash', '/bin/zsh']
+  block: # noqa name[missing]
+
+    - name: Tab-completion | Ensure shell config file exists
+      ansible.builtin.stat:
+        path: "{{ ansible_user_dir }}/.{{ ansible_user_shell | basename }}rc"
+      register: shell_config_file
+
+    - name: Tab-completion | Create empty shell config file
+      ansible.builtin.file:
+        path: "{{ ansible_user_dir }}/.{{ ansible_user_shell | basename }}rc"
+        state: touch
+        mode: 0644
+      when: not shell_config_file.stat.exists
+
+    - name: Tab-completion | Check if tab completion is already installed
+      ansible.builtin.lineinfile:
+        path: "{{ ansible_user_dir }}/.{{ ansible_user_shell | basename }}rc"
+        line: complete -C /usr/bin/terraform terraform
+      register: terraform_autocomplete_installed
+      check_mode: true
+      diff: false
+
+    - name: Tab-completion | Install autocomplete package
+      ansible.builtin.command:
+        cmd: terraform -install-autocomplete
+      when: terraform_autocomplete_installed.changed
