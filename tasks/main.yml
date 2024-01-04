@@ -1,5 +1,4 @@
 ---
-
 - ansible.builtin.import_tasks: install-with-apt.yml # noqa name[missing]
   when: ansible_facts['pkg_mgr'] == "apt"
 

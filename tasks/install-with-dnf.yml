@@ -1,5 +1,4 @@
 ---
-
 - name: Install with DNF | Install dependencies
   ansible.builtin.dnf:
     name: dnf-plugins-core
@@ -11,7 +10,7 @@
   ansible.builtin.get_url:
     url: https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
     dest: /etc/yum.repos.d/hashicorp.repo
-    mode: 0644
+    mode: "0644"
   become: true
   when: ansible_facts['distribution'] == "Fedora"
 
@@ -20,7 +19,7 @@
   ansible.builtin.get_url:
     url: https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
     dest: /etc/yum.repos.d/hashicorp.repo
-    mode: 0644
+    mode: "0644"
   become: true
   when: ansible_facts['distribution'] == "Amazon"
 
@@ -28,7 +27,7 @@
   ansible.builtin.get_url:
     url: https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
     dest: /etc/yum.repos.d/hashicorp.repo
-    mode: 0644
+    mode: "0644"
   become: true
   when:
     - ansible_facts['os_family'] == "RedHat"

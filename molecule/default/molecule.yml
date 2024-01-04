@@ -12,7 +12,7 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
-    command: "/usr/sbin/init"
+    command: /usr/sbin/init
     pre_build_image: true
   - name: rockylinux8
     groups:
@@ -24,7 +24,7 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
-    command: "/usr/sbin/init"
+    command: /usr/sbin/init
     pre_build_image: true
   - name: fedora37
     groups:
@@ -36,7 +36,7 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
-    command: "/usr/sbin/init"
+    command: /usr/sbin/init
     pre_build_image: true
   - name: ubuntu2004
     groups:
@@ -48,7 +48,7 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
-    command: "/lib/systemd/systemd"
+    command: /lib/systemd/systemd
     pre_build_image: true
   - name: amazonlinux2022
     groups:
@@ -60,7 +60,7 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
-    command: "/lib/systemd/systemd"
+    command: /lib/systemd/systemd
     pre_build_image: true
 provisioner:
   name: ansible

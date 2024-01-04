@@ -1,5 +1,4 @@
 ---
-
 - name: Install with APT | Install dependencies
   ansible.builtin.apt:
     name:
@@ -13,12 +12,12 @@
   ansible.builtin.get_url:
     url: https://apt.releases.hashicorp.com/gpg
     dest: /etc/apt/trusted.gpg.d/hashicorp-archive-keyring.asc
-    mode: 0644
+    mode: "0644"
   become: true
 
 - name: Install with APT | Add official HashiCorp repository
   ansible.builtin.apt_repository:
-    repo: "deb https://apt.releases.hashicorp.com {{ ansible_facts['distribution_release'] }} main"
+    repo: deb https://apt.releases.hashicorp.com {{ ansible_facts['distribution_release'] }} main
     filename: hashicorp
     state: present
     update_cache: true

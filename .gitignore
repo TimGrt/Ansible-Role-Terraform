@@ -1,0 +1,8 @@
+# Logs folder
+logs/*
+
+# Cache folder from molecule testing
+.cache
+
+# Ignore swap files
+*.swp

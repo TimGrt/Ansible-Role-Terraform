@@ -1,5 +1,4 @@
 ---
-
 - name: Install with YUM | Install dependencies
   ansible.builtin.yum:
     name: yum-utils
@@ -10,7 +9,7 @@
   ansible.builtin.get_url:
     url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
     dest: /etc/yum.repos.d/hashicorp.repo
-    mode: 0644
+    mode: "0644"
   become: true
 
 - name: Install with YUM | Install Terraform
